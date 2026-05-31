@@ -33,7 +33,7 @@ int main() {
 
     std::ofstream csv("result/data.csv");
     csv << "n,ops_off,ops_on,ops_rand\n";
- 
+
     const int STEP    =  5;
     const int MAX_N   = 200;
     const int REPEATS =  7;
