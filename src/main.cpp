@@ -11,7 +11,7 @@ int measureOps(int n, int mode) {
         bool state;
         if      (mode == 0) state = false;
         else if (mode == 1) state = true;
-        else                state = (ran_() % 2 == 0);
+        else                state = (rand_r() % 2 == 0);
         train.addCar(state);
     }
     train.getLength();
@@ -32,7 +32,6 @@ int main() {
 
     std::ofstream csv("result/data.csv");
     csv << "n,ops_off,ops_on,ops_rand\n";
- 
     const int STEP = 5;
     const int MAX_N = 200;
     const int REPEATS = 7;
@@ -40,7 +39,7 @@ int main() {
     for (int n = 2; n <= MAX_N; n += STEP) {
         int ops_off = measureOps(n, 0);
         int ops_on  = measureOps(n, 1);
-        long long sum = 0;
+        int64_t int64_t sum = 0;
         for (int r = 0; r < REPEATS; r++) sum += measureOps(n, 2);
         int ops_rand = static_cast<int>(sum / REPEATS);
         csv << n << "," << ops_off << "," << ops_on << "," << ops_rand << "\n";
