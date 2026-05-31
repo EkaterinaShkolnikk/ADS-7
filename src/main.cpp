@@ -11,7 +11,7 @@ int measureOps(int n, int mode) {
         bool state;
         if      (mode == 0) state = false;
         else if (mode == 1) state = true;
-        else                state = (rand_r() % 2 == 0);
+        else                state = (rand() % 2 == 0);
         train.addCar(state);
     }
     train.getLength();
