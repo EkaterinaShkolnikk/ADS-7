@@ -26,7 +26,6 @@ void Train::addCar(bool light) {
 
 int Train::getLength() {
     Car* cur = first;
- 
     // Включаем маяк (он мог быть выключен изначально)
     cur->light = true;
 
