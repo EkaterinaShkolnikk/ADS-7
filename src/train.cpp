@@ -2,14 +2,14 @@
 #include "train.h"
 
 Train::Train() : first(nullptr), countOp(0) {}
- 
+
 
 void Train::addCar(bool light) {
     Car* newCar  = new Car;
     newCar->light = light;
     newCar->next  = nullptr;
     newCar->prev  = nullptr;
- 
+
     if (!first) {
         first = newCar;
         first->next = newCar;
@@ -23,31 +23,31 @@ void Train::addCar(bool light) {
         first->prev  = newCar;
     }
 }
- 
+
 int Train::getLength() {
     Car* cur = first;
  
     // Включаем маяк (он мог быть выключен изначально)
     cur->light = true;
- 
+
     int count = 1;
- 
+
     while (true) {
         cur = cur->next;
         countOp++;
- 
+
         if (!cur->light) {
             count++;
         } else {
             // Нашли включённый вагон: выключаем
             cur->light = false;
- 
+
             // Возвращаемся назад на count шагов
             for (int i = 0; i < count; i++) {
                 cur = cur->prev;
                 countOp++;
             }
- 
+
             if (!cur->light) {
                 // Вернулись к выключенному маяку — count и есть длина поезда
                 return count;
@@ -58,7 +58,6 @@ int Train::getLength() {
         }
     }
 }
- 
 int Train::getOpCount() {
     return countOp;
 }
